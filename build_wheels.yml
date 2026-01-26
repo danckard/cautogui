@@ -54,3 +54,21 @@ jobs:
           files: dist/*.whl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  publish_pypi:
+    name: Publish to PyPI
+    needs: release # Espera a que la release de GitHub esté lista
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write  # OBLIGATORIO para Trusted Publishing
+    steps:
+      - name: Download all wheels
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
