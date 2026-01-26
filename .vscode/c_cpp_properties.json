@@ -3,7 +3,9 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "C:\\Users\\asus-tuf\\AppData\\Local\\Programs\\Python\\Python311\\include",
+                "C:\\Users\\asus-tuf\\AppData\\Local\\Programs\\Python\\Python311\\libs"
             ],
             "defines": [
                 "_DEBUG",
