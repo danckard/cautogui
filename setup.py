@@ -1,17 +1,20 @@
-from setuptools import setup, Extension
+from setuptools import setup, Extension, find_packages
 
-# Definimos la extensión
-# El nombre 'cautogui_core' debe coincidir con el de PyInit_cautogui_core en C++
-core_module = Extension(
+module = Extension(
     'cautogui_core',
     sources=['src/core.cpp'],
-    # Aquí puedes añadir optimizaciones de compilador más adelante
-    extra_compile_args=['-O3'] 
+    libraries=['user32', 'gdi32'],
+    extra_compile_args=['/O2'] # Optimización de velocidad máxima
 )
 
 setup(
     name='cautogui',
-    version='0.1.0',
-    description='C++ Backend for GUI Automation',
-    ext_modules=[core_module],
+    version='1.0.0',
+    author='danckard',
+    description='High-performance automation engine',
+    ext_modules=[module],
+    packages=find_packages(),
+    py_modules=['cautogui'],
+    install_requires=['Pillow'],
+    python_requires='>=3.7',
 )
