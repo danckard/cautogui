@@ -129,11 +129,9 @@ static PyObject* press_key(PyObject* self, PyObject* args) {
 
     INPUT inputs[2] = {0};
     
-    // Key Down
     inputs[0].type = INPUT_KEYBOARD;
     inputs[0].ki.wVk = (WORD)key_code;
     
-    // Key Up
     inputs[1].type = INPUT_KEYBOARD;
     inputs[1].ki.wVk = (WORD)key_code;
     inputs[1].ki.dwFlags = KEYEVENTF_KEYUP;
@@ -150,7 +148,6 @@ static PyObject* find_image(PyObject* self, PyObject* args) {
     if (!PyArg_ParseTuple(args, "y*iiy*iifiO", &screen_buf, &s_w, &s_h, &templ_buf, &t_w, &t_h, &confidence, &grayscale, &region_obj))
         return NULL;
 
-    // Extract region limits
     int rx_start, ry_start, rx_end, ry_end;
     PyArg_ParseTuple(region_obj, "iiii", &rx_start, &ry_start, &rx_end, &ry_end);
 
@@ -158,7 +155,6 @@ static PyObject* find_image(PyObject* self, PyObject* args) {
     unsigned char* templ = (unsigned char*)templ_buf.buf;
     int max_diff = (int)((1.0f - confidence) * 255);
 
-    // The loop now only searches within the specified region
     for (int y = ry_start; y <= ry_end - t_h; ++y) {
         for (int x = rx_start; x <= rx_end - t_w; ++x) {
             bool match = true;
@@ -216,7 +212,6 @@ static PyObject* move_mouse_abs(PyObject* self, PyObject* args) {
     SendInput(1, &input, sizeof(INPUT));
     Py_RETURN_NONE;
 }
-// For pressing/releasing individual buttons (necessary for drag)
 static PyObject* mouse_event_raw(PyObject* self, PyObject* args) {
     int dwFlags, x, y;
     if (!PyArg_ParseTuple(args, "iii", &dwFlags, &x, &y)) return NULL;
@@ -230,7 +225,27 @@ static PyObject* mouse_event_raw(PyObject* self, PyObject* args) {
     SendInput(1, &input, sizeof(INPUT));
     Py_RETURN_NONE;
 }
-// Actualiza tu tabla de métodos
+static PyObject* mouse_down(PyObject* self, PyObject* args) {
+    // 0 para izquierdo, 1 para derecho
+    int button;
+    if (!PyArg_ParseTuple(args, "i", &button)) return NULL;
+
+    if (button == 0) mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+    else mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
+
+    Py_RETURN_NONE;
+}
+
+// Función para soltar el botón
+static PyObject* mouse_up(PyObject* self, PyObject* args) {
+    int button;
+    if (!PyArg_ParseTuple(args, "i", &button)) return NULL;
+
+    if (button == 0) mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+    else mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+
+    Py_RETURN_NONE;
+}
 static PyMethodDef CAutoGuiMethods[] = {
     {"get_monitors", get_monitors, METH_VARARGS, "get all monitors"},
     {"capture_all", capture_all, METH_VARARGS, "capture all screen"},
@@ -239,6 +254,8 @@ static PyMethodDef CAutoGuiMethods[] = {
     {"key_event", (PyCFunction)key_event, METH_VARARGS, "raw key event"},
     {"press_key", (PyCFunction)press_key, METH_VARARGS, "simulate pressing and releasing a physical key"},
     {"move_mouse_abs", (PyCFunction)move_mouse_abs, METH_VARARGS, "move mouse to an absolute position"},
+    {"mouse_down", mouse_down, METH_VARARGS, "press mouse button"},
+    {"mouse_up", mouse_up, METH_VARARGS, "release mouse button"},
     {NULL, NULL, 0, NULL}
 };
 

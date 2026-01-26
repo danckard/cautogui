@@ -356,6 +356,15 @@ class CAutoGUI:
             cautogui_core.mouse_event_raw(up_flag, 0, 0)
             if i < clicks - 1:
                 time.sleep(interval)
+    @staticmethod
+    def mouseDown(button='left'):
+        b = 0 if button == 'left' else 1
+        cautogui_core.mouse_down(b)
+
+    @staticmethod
+    def mouseUp(button='left'):
+        b = 0 if button == 'left' else 1
+        cautogui_core.mouse_up(b)
 cautogui = CAutoGUI()
 for name, func in CAutoGUI._TWEEN_MAP.items():
     globals()[name] = func.__func__
