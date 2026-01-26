@@ -1,4 +1,4 @@
-import cautogui_core
+from cautogui import core
 from PIL import Image
 import ctypes
 import time
