@@ -255,7 +255,6 @@ static PyMethodDef CAutoGuiMethods[] = {
     {"key_event", (PyCFunction)key_event, METH_VARARGS, "raw key event"},
     {"press_key", (PyCFunction)press_key, METH_VARARGS, "simulate pressing and releasing a physical key"},
     {"move_mouse_abs", (PyCFunction)move_mouse_abs, METH_VARARGS, "move mouse to an absolute position"},
-    {"move_mouse_rel", (PyCFunction)move_mouse_rel, METH_VARARGS, "move mouse to a relative position"},
     {"mouse_event_raw", (PyCFunction)mouse_event_raw, METH_VARARGS, "raw mouse event"},
     {"mouse_down", (PyCFunction)mouse_down, METH_VARARGS, "mouse down"},
     {"mouse_up", (PyCFunction)mouse_up, METH_VARARGS, "mouse up"},
