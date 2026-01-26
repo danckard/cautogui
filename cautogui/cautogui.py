@@ -1,5 +1,7 @@
-
-import cautogui_core
+try:
+    from . import cautogui_core
+except ImportError:
+    import cautogui_core
 from PIL import Image
 import ctypes
 import time
