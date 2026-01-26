@@ -4,10 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cautogui"
-dynamic = ["version"] 
+description = "High-performance GUI automation with C++ core"
 readme = "README.md"
-description = "Native high-performance UI automation for Windows"
-requires-python = ">=3.7"
-dependencies = [
-    "Pillow>=9.0.0",
-]
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [{name = "danckard"}]
+dynamic = ["version", "urls"]
+
+[tool.setuptools_scm]
