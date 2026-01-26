@@ -9,7 +9,7 @@ ext_module = Extension(
 )
 
 setup(
-    ext_modules=[ext_module],
-    packages=find_packages(),
+    use_scm_version=True,
+    setup_requires=['setuptools_scm'],
     include_package_data=True,
 )
