@@ -5,7 +5,7 @@ ext_module = Extension(
     'cautogui.cautogui_core',
     sources=[os.path.join('src', 'core.cpp')],
     libraries=['user32', 'gdi32', 'gdiplus'],
-    extra_compile_args=['/O2', '/std:c++17']
+    extra_compile_args=['/O2', '/std:c++17', '/MT']
 )
 
 setup(
