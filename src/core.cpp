@@ -2,9 +2,10 @@
 #include <Python.h>
 #include <windows.h>
 #include <vector>
-GdiplusStartupInput gdiplusStartupInput;
-ULONG_PTR gdiplusToken;
-GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+// GdiplusStartupInput gdiplusStartupInput;
+// ULONG_PTR gdiplusToken;
+// GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+
 struct MonitorData {
     int x, y, w, h;
     bool is_primary;
