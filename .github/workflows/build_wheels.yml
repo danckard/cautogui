@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*' # Se activa cuando subes una etiqueta como v1.0.0
+  workflow_dispatch:
 
 jobs:
   build_wheels:
@@ -75,4 +76,3 @@ jobs:
         with:
           packages-dir: dist/
           skip-existing: true
-          
