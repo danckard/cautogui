@@ -245,7 +245,7 @@ static struct PyModuleDef cautogui_core_module = {
     "cautogui_core",
     "Internal C++ extension for high-performance UI automation.",
     -1,
-    CAutoGUIMethods
+    CAutoGuiMethods
 };
 
 PyMODINIT_FUNC PyInit_cautogui_core(void) {

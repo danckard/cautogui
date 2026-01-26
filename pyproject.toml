@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cautogui"
+version = "1.0.0"
+description = "Native high-performance UI automation for Windows"
+requires-python = ">=3.7"
+dependencies = [
+    "Pillow>=9.0.0",
+]

@@ -1,0 +1,4 @@
+include src/*.cpp
+include cautogui/*.py
+include LICENSE
+include README.md
