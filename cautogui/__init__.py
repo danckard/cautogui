@@ -1,11 +1,14 @@
 """
 CAutoGUI - Motor de automatización de alto rendimiento
 """
+try:
+    import cautogui_core
+except ImportError:
+    from . import cautogui_core
 
 from .cautogui import (
     cautogui,
     Tweens,
-    # Exponemos los tweens más comunes directamente para facilidad de uso
     linear,
     easeInQuad,
     easeOutQuad,
@@ -26,7 +29,6 @@ from .cautogui import (
     easeOutBounce
 )
 
-# Definimos qué se exporta cuando alguien hace 'from cautogui import *'
 __all__ = [
     'cautogui',
     'Tweens',
