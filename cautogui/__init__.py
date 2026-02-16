@@ -62,8 +62,7 @@ __all__ = [
     'easeInBack',
     'easeOutBack',
     'easeInBounce',
-    'easeOutBounce',
-    'cautogui', 'click', 'displayMousePosition', 'locateCenterOnScreen',
+    'easeOutBounce', 'click', 'displayMousePosition', 'locateCenterOnScreen',
     'locateOnScreen', 'locateAllOnScreen', 'typewrite', 'press',
     'write', 'dragTo', 'moveTo', 'position', 'size','hotkey',
     'linear', 'easeInQuad', 'easeOutQuad', 'easeInOutQuad'

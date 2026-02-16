@@ -375,8 +375,9 @@ cautogui = CAutoGUI()
 _methods = [
     'click', 'displayMousePosition', 'locateCenterOnScreen', 
     'locateOnScreen', 'locateAllOnScreen', 'typewrite', 
-    'press', 'write', 'dragTo', 'moveTo', 'position', 'size'
+    'press', 'write', 'dragTo', 'moveTo', 'position', 'size', 'hotkey'
 ]
+
 for name in _methods:
     globals()[name] = getattr(cautogui, name)
 
