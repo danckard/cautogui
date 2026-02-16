@@ -207,21 +207,34 @@ class CAutoGUI:
     def write(self, text, interval=0.01):
         """text typing handling for uppercase and lowercase."""
         for char in text:
-            self.press(char)
+            vk = self._get_vk(char)
+            if vk == 0: continue
+                
+            shift = self._needs_shift(char)
+            
+            if shift:
+                cautogui_core.key_event(0x10, 0) # VK_SHIFT Down
+                
+            cautogui_core.key_event(vk, 0) # Key Down
+            cautogui_core.key_event(vk, 2) # Key Up (KEYEVENTF_KEYUP es 2)
+            
+            if shift:
+                cautogui_core.key_event(0x10, 2) # VK_SHIFT Up
+                
             if interval > 0:
                 time.sleep(interval)
 
     def _get_vk(self, char):
-        """convert a character to a Windows Virtual Key Code."""
-        # Handle special characters
-        special = {'enter': 0x0D, 'esc': 0x1B, 'tab': 0x09, ' ': 0x20}
-        if char.lower() in special:
-            return special[char.lower()]
-        
-        # For letters and numbers
-        res = ctypes.windll.user32.VkKeyScanW(ord(char))
+    # VkKeyScanA devuelve el Virtual Key Code en el byte bajo
+        # y el estado del Shift/Alt/Ctrl en el byte alto
+        res = ctypes.windll.user32.VkKeyScanA(ord(char))
+        if res == -1:
+            return 0
         return res & 0xFF
-
+    def _needs_shift(self, char):
+        res = ctypes.windll.user32.VkKeyScanA(ord(char))
+        # El bit 8 (0x100) indica si requiere Shift
+        return (res >> 8) & 0x1 == 1
     def _needs_shift(self, char):
         """detect if the character requires the SHIFT key."""
         if len(char) > 1: return False
