@@ -5,7 +5,6 @@ try:
     import cautogui_core
 except ImportError:
     from . import cautogui_core
-
 from .cautogui import (
     cautogui,
     # Métodos reales que solicitaste

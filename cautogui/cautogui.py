@@ -356,6 +356,9 @@ class CAutoGUI:
             cautogui_core.mouse_event_raw(up_flag, 0, 0)
             if i < clicks - 1:
                 time.sleep(interval)
+    def hotkey(self, key):
+        """simulate pressing a physical key."""
+        self.press(key)
     @staticmethod
     def mouseDown(button='left'):
         b = 0 if button == 'left' else 1
@@ -365,6 +368,7 @@ class CAutoGUI:
     def mouseUp(button='left'):
         b = 0 if button == 'left' else 1
         cautogui_core.mouse_up(b)
+
 cautogui = CAutoGUI()
 
 # Exportar métodos de la instancia como funciones globales
