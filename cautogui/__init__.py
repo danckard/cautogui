@@ -20,6 +20,7 @@ from .cautogui import (
     moveTo,
     position,
     size,
+    hotkey,
     # Tweens
     linear,
     easeInQuad,
@@ -64,7 +65,7 @@ __all__ = [
     'easeOutBounce',
     'cautogui', 'click', 'displayMousePosition', 'locateCenterOnScreen',
     'locateOnScreen', 'locateAllOnScreen', 'typewrite', 'press',
-    'write', 'dragTo', 'moveTo', 'position', 'size',
+    'write', 'dragTo', 'moveTo', 'position', 'size','hotkey',
     'linear', 'easeInQuad', 'easeOutQuad', 'easeInOutQuad'
 ]
 
