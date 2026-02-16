@@ -8,7 +8,20 @@ except ImportError:
 
 from .cautogui import (
     cautogui,
-    Tweens,
+    # Métodos reales que solicitaste
+    click,
+    displayMousePosition,
+    locateCenterOnScreen,
+    locateOnScreen,
+    locateAllOnScreen,
+    typewrite,
+    press,
+    write,
+    dragTo,
+    moveTo,
+    position,
+    size,
+    # Tweens
     linear,
     easeInQuad,
     easeOutQuad,
@@ -49,7 +62,11 @@ __all__ = [
     'easeInBack',
     'easeOutBack',
     'easeInBounce',
-    'easeOutBounce'
+    'easeOutBounce',
+    'cautogui', 'click', 'displayMousePosition', 'locateCenterOnScreen',
+    'locateOnScreen', 'locateAllOnScreen', 'typewrite', 'press',
+    'write', 'dragTo', 'moveTo', 'position', 'size',
+    'linear', 'easeInQuad', 'easeOutQuad', 'easeInOutQuad'
 ]
 
 __version__ = '1.0.0'

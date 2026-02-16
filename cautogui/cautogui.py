@@ -366,5 +366,16 @@ class CAutoGUI:
         b = 0 if button == 'left' else 1
         cautogui_core.mouse_up(b)
 cautogui = CAutoGUI()
+
+# Exportar métodos de la instancia como funciones globales
+_methods = [
+    'click', 'displayMousePosition', 'locateCenterOnScreen', 
+    'locateOnScreen', 'locateAllOnScreen', 'typewrite', 
+    'press', 'write', 'dragTo', 'moveTo', 'position', 'size'
+]
+for name in _methods:
+    globals()[name] = getattr(cautogui, name)
+
+# Exportar Tweens individualmente
 for name, func in CAutoGUI._TWEEN_MAP.items():
     globals()[name] = func.__func__
